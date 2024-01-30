@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "datazoomcamp-deula",
+  "private_key_id": "e4fe8befbe781c61dba30ba4698f140a5d392fec",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQD4eGPOpRw63tJ/\nb9KmCbdNfFS88mRsjaQwDlC+23kanipBiqrfcnQCIQNO0NvAGbgjrJxg8OlX6V9X\nFzCg7VcrO5vr2q4PK1DLSlr+PU5xQOf0T83ehfaKUj87HUKALrYUjgtUkuGnGcVM\nDCL/2zdygUCdFjR1XvrYowwDsWWb5BEn8eHn0u0rlAYanWXeFqxXcaUtJaQ9yPB2\n5QwLfxcUIQif9ydFciHJeCAY7RqxJ4UvnBOJ3tUV0bFpZzksAGrvyFiRmTal4556\n8fMuRZfuhWwQJZCiNgwKnzrPP3JnkHSJZ4r8Gq/EI8fBvgO/zBqOXA2Zu7BnI+XP\n0P6nGxTZAgMBAAECggEAIzXdoEXfQ2vFH6sHNQv7w7QX8V4Azi3085xruTLdLWD2\n3aqFaWciOmpW5NSNzOINfqdc0misCzm2jt8UlJGIVfI7YnJu/RZR0OUnZ4+Pg1bD\n0r17uoojCa9QZ5OkvgkgjgwiXeih/UNBJXQzgizHZZIccnEC8RO1xNJiMaRyIOOA\nRa01c2iEV+4fH7CZIgRbk0PVLchh1GTCnwP8FUmsI/tROqNFEYjSnMLhqb7ymhN+\nbNOLU52p0gzqFr3MGvhQbOdD5LE0a1bI3CMGb5d1G8a3SmFkrrwoHp3CNfulMift\ng0SGL1xJ7PIKgXuch3+vt+fIvouflv7kb+IyJpB1CwKBgQD/W8loQFpJdhbnL9NX\nT0om76x1ri0Nn1q5Cc+2FTZ2Kv+tgWy7P+F2yQ/aSvRNef4tpOE1m4czQt5crJWb\n0uADTNi0+cqmmJUbrwFq28GbehIoa7j47CWlWvTXMUWT3ckCEhXJ5PfUjSAt8aEc\nocOcy3y6crnOWDzvi0hPT1qMxwKBgQD5GCxp2ga07Lh691kiA/WSaaD7BeGa9RQQ\npgCB/U9wZr6q70yPgyrr+8uCKxHAh8W/96Yjcy66P/VtO+C6ohMjyeJ5I7zMczoZ\nJHjaUfVBCzLNREShhVC6VWcsGD1X4T5nStVJQnk5HOk3y8gvsCh16EOcbeFihpzP\nQqWLYbtxXwKBgBmiajaX9zhWrXfp2ipyoDwGZWau5IDwlVfr/zkFKiF0sZQGYRbv\nE8Ar8PZ1/c5lR7nnSmBqS4k+1jmxbZdl9Oz/4uVQCiLtQFK2H8tNYkMsXvRF1BzQ\n//p4hgmwPY7ZfdtCW4OYA7UHscpK7mSEbLGpz8ybxcFMJFnbvpePnMRzAoGBANiF\neb29Jg1Io4dH0HOv61uMc8EfuJ6goANkuJZFoTK8LMqa3fr1cm7UXW7Vj0XC/1LB\nqumvqpN9GxILdWnljiuSxki0lt1E3+CRAngLu9sBJ/SjfeDE6Io/yEHdBB2Kjlrt\nAn7+yC6sAdFdUrKZNmJfNb4ZCUxCZLYIYavJlUyTAoGALOQ7BhYFakQLKDPxWeTe\nqyA2imS7mxsATtDO//dds56ZyWD53vzTUgIdQWFJkc0Rzp5oFjDxy5afux2IK/qU\nGJ3hGPzzI3M4C4bCggwLRMyvtS4Qa2WNuyW/rhrhMCulGA3k6W4T7ptrmyj8u4nu\nupMXkf8IyaDOqZJLGeLHoB0=\n-----END PRIVATE KEY-----\n",
+  "client_email": "datazoomcamp-deula@datazoomcamp-deula.iam.gserviceaccount.com",
+  "client_id": "105927408527669695650",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/datazoomcamp-deula%40datazoomcamp-deula.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
