@@ -38,3 +38,4 @@ terraform.rc
 **/csv/*
 
 .ipynb_checkpoints/
+*.json
