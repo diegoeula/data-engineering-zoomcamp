@@ -66,6 +66,13 @@ Remember that `lpep_pickup_datetime` and `lpep_dropoff_datetime` columns are in 
 - 15859
 - 89009
 
+```
+SELECT count(1)
+FROM public.green_taxi_trips
+where 
+date(lpep_pickup_datetime)='2019-09-18' and date(lpep_dropoff_datetime)='2019-09-18'
+```
+
 ## Question 4. Longest trip for each day
 
 Which was the pick up day with the longest trip distance?
@@ -77,7 +84,14 @@ Tip: For every trip on a single day, we only care about the trip with the longes
 - 2019-09-16
 - 2019-09-26
 - 2019-09-21
-
+```
+SELECT date(lpep_pickup_datetime), max(trip_distance)
+FROM public.green_taxi_trips
+where 
+date(lpep_pickup_datetime)= date(lpep_dropoff_datetime)
+group by date(lpep_pickup_datetime)
+order by 2 desc
+```
 
 ## Question 5. Three biggest pick up Boroughs
 
@@ -90,6 +104,16 @@ Which were the 3 pick up Boroughs that had a sum of total_amount superior to 500
 - "Bronx" "Manhattan" "Queens" 
 - "Brooklyn" "Queens" "Staten Island"
 
+```
+SELECT zones."Borough",sum(total_amount)
+FROM public.green_taxi_trips as trips
+inner join public.zones as zones on (trips."PULocationID"=zones."LocationID")
+where 
+    date(lpep_pickup_datetime) ='2019-09-18' and zones."Borough" != 'Unknown'
+group by 
+zones."Borough"
+having sum(total_amount)>50000 
+```
 
 ## Question 6. Largest tip
 
@@ -102,9 +126,16 @@ Note: it's not a typo, it's `tip` , not `trip`
 - Jamaica
 - JFK Airport
 - Long Island City/Queens Plaza
-
-
-
+```
+SELECT do_zones."Zone",max(tip_amount)
+FROM public.green_taxi_trips as trips
+inner join public.zones as pu_zones on (trips."PULocationID"=pu_zones."LocationID")
+inner join public.zones as do_zones on (trips."DOLocationID"=do_zones."LocationID")
+where 
+date(lpep_pickup_datetime) >='2019-09-01' and date(lpep_pickup_datetime) <='2019-09-30' and pu_zones."Zone" = 'Astoria'
+group by do_zones."Zone"
+order by 2 desc
+```
 ## Terraform
 
 In this section homework we'll prepare the environment by creating resources in GCP with Terraform.
