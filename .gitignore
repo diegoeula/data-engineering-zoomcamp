@@ -54,3 +54,6 @@ mage-ai.db
 mage_data/
 secrets/
 .cache/
+
+__pycache__/
+*.pyc
