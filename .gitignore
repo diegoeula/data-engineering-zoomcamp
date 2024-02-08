@@ -57,3 +57,6 @@ secrets/
 
 __pycache__/
 *.pyc
+
+.file_versions
+.ssh_tunnel
