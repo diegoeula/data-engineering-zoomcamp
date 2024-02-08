@@ -41,3 +41,16 @@ terraform.rc
 *.json
 google-cloud-sdk/*
 google-cloud-cli-462.0.0-linux-x86_64.tar.gz
+
+
+# Scratch files
+scratch*
+/mage_data*
+*secrets*.json
+*.json
+
+logs/
+mage-ai.db
+mage_data/
+secrets/
+.cache/
