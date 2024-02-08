@@ -26,6 +26,7 @@ def transform(data, *args, **kwargs):
              )
     print("Renamed columns")
     print(df.columns)
+    print("vendors")
     print(df["vendor_id"].unique().tolist())
     return df
 
@@ -45,5 +46,5 @@ def test_output(output, *args):
     #Assert trip_distance > 0
     assert output['trip_distance'].isin([0]).sum() == 0, 'Zero trip distance error'
     
-    # Assert that all values in the "vendor_id" column are among the existing values
+    #Assert that all values in the vendor_id column are from existing values
     assert output['vendor_id'].isin(output['vendor_id'].unique()).all(), 'Not all values in "vendor_id" are among the existing values'
