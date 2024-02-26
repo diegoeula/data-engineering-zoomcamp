@@ -75,7 +75,7 @@ Deadline: 22 February (Thursday), 22:00 CET
 
 * Video: 
 * Answers:
-  * Question 1: 
-  * Question 2: 
-  * Question 3: 
-  * Question 4: 
+  * Question 1: It applies a _limit 100_ only to our staging models
+  * Question 2: The code from the development branch we are requesting to merge to main
+  * Question 3: 22998722
+  * Question 4: Yellow
