@@ -2,6 +2,9 @@ import io
 import os
 import requests
 import pandas as pd
+import pyarrow as pa
+import pyarrow.parquet as pq
+import pyarrow.compute as pc
 from google.cloud import storage
 
 """
@@ -11,7 +14,8 @@ Pre-reqs:
 3. Set GCP_GCS_BUCKET as your bucket or change default value of BUCKET
 """
 
-init_url = 'https://d37ci6vzurychx.cloudfront.net/trip-data/'
+#init_url = 'https://d37ci6vzurychx.cloudfront.net/trip-data/'
+init_url ='https://github.com/DataTalksClub/nyc-tlc-data/releases/download/'
 # switch out the bucketname
 BUCKET ='dw-zoomcamp-deula' 
 project_id='datazoomcamp-deula'
@@ -40,17 +44,85 @@ def web_to_gcs(year, service):
         month = '0'+str(i+1)
         month = month[-2:]
         # csv file_name
-        file_name = f"{service}_tripdata_{year}-{month}.parquet"
+        file_name = f"{service}_tripdata_{year}-{month}.csv.gz"
+        file_name_dest = f"{service}_tripdata_{year}{month}.parquet"
+
         # download it using requests via a pandas df
-        request_url = f"{init_url}{file_name}"
+        request_url = f"{init_url}{service}/{file_name}"
         print(request_url)
         r = requests.get(request_url)
         open(file_name, 'wb').write(r.content)
         print(f"Local: {file_name}")
+        # define type
+        if service == "green":
+            print("Using lpep_pickup_datetime as parse_dates.")
+            taxi_dtypes = {
+                        'VendorID': pd.Int64Dtype(),
+                        'passenger_count': pd.Int64Dtype(),
+                        'trip_distance': float,
+                        'RatecodeID':pd.Int64Dtype(),
+                        'store_and_fwd_flag':str,
+                        'PULocationID':pd.Int64Dtype(),
+                        'DOLocationID':pd.Int64Dtype(),
+                        'payment_type': pd.Int64Dtype(),
+                        'fare_amount': float,
+                        'extra':float,
+                        'mta_tax':float,
+                        'tip_amount':float,
+                        'tolls_amount':float,
+                        'improvement_surcharge':float,
+                        'total_amount':float,
+                        'congestion_surcharge':float,
+                        'trip_type': pd.Int64Dtype(),
+                        'lpep_pickup_datetime': str,
+                        'lpep_dropoff_datetime': str
+                    }
+            #parse_dates = ['lpep_pickup_datetime', 'lpep_dropoff_datetime']
+        if service == "yellow":
+            print("Using tpep_pickup_datetime as parse_dates.")
+            taxi_dtypes = {
+                        'VendorID': pd.Int64Dtype(),
+                        'passenger_count': pd.Int64Dtype(),
+                        'trip_distance': float,
+                        'RatecodeID':pd.Int64Dtype(),
+                        'store_and_fwd_flag':str,
+                        'PULocationID':pd.Int64Dtype(),
+                        'DOLocationID':pd.Int64Dtype(),
+                        'payment_type': pd.Int64Dtype(),
+                        'fare_amount': float,
+                        'extra':float,
+                        'mta_tax':float,
+                        'tip_amount':float,
+                        'tolls_amount':float,
+                        'improvement_surcharge':float,
+                        'total_amount':float,
+                        'congestion_surcharge':float,
+                        'tpep_pickup_datetime': str,
+                        'tpep_dropoff_datetime': str
+                    }
+            parse_dates = ['tpep_pickup_datetime', 'tpep_dropoff_datetime']
+        if service == "fhv":
+            print("Using pickup_datetime as parse_dates.")
+            taxi_dtypes = {
+                        'dispatching_base_num': str,
+                        'PUlocationID':pd.Int64Dtype(),
+                        'DOlocationID':pd.Int64Dtype(),
+                        'SR_Flag': pd.Int64Dtype(),
+                        'Affiliated_base_number': str,
+                        'pickup_datetime':str,
+                        'dropOff_datetime':str
+                    }
+            parse_dates = ['pickup_datetime', 'dropOff_datetime']
+
+        # read it back into a parquet file
+        df = pd.read_csv(file_name, compression='gzip', dtype=taxi_dtypes)
+        file_name = file_name.replace('.csv.gz', '.parquet')
+        df.to_parquet(file_name, engine='pyarrow')
+        print(f"Parquet: {file_name}")
 
         # upload it to gcs 
-        upload_to_gcs(BUCKET, f"{service}/{file_name}", file_name)
-        print(f"GCS: {service}/{file_name}")
+        upload_to_gcs(BUCKET, f"{service}/{file_name_dest}", file_name)
+        print(f"GCS: {service}/{file_name_dest}")
 
 web_to_gcs('2019', 'green')
 web_to_gcs('2020', 'green')
