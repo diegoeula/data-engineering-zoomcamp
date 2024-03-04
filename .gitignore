@@ -60,3 +60,6 @@ __pycache__/
 
 .file_versions
 .ssh_tunnel
+
+05-batch/homework/data/*
+05-batch/homework/spark-warehouse/*
